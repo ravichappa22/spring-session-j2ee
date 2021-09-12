@@ -17,13 +17,14 @@ public class RedisSessionReplication extends HttpServlet {
     HttpSession session = request.getSession();
     if (session == null) {
       session = request.getSession(true);
+
       request.setAttribute("isNewTest", "Session is created first time." + session);
       System.out.println("New Session = " + session.getId());
     }
     else {
       request.setAttribute("isNewTest", "Session already created");
       System.out.println("Session exists = " + session.getId() + " original Session" + session);
-      session.setMaxInactiveInterval(660);
+      session.setMaxInactiveInterval(600);
     }
 
     if (request.getParameter("action") != null) {
@@ -57,10 +58,15 @@ public class RedisSessionReplication extends HttpServlet {
         String hazelId = session.getId();
         // String jessionId = ((HazelcastHttpSession)session).getOriginalSessionId();
         session.invalidate();
-        //request.getRequestDispatcher("/logout.jsp").forward(request, response);
-        response.getWriter().println("hz session invalidated" + hazelId);
+        request.getRequestDispatcher("/logout.jsp").forward(request, response);
+        //response.getWriter().println("hz session invalidated" + hazelId);
         //response.getWriter().println("session invalidated" + jessionId);
       }
+    } else {
+       request.getSession().invalidate();
+       System.out.println("invalidated going to create new");
+       session = request.getSession(true);
+      System.out.println("isnew in servlet = " + session.isNew());
     }
 
     if (display) {
