@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 public class CustomSessionListener implements HttpSessionListener {
+
   @Override
   public void sessionCreated (HttpSessionEvent httpSessionEvent) {
     System.out.println("session created " + httpSessionEvent.getSession());

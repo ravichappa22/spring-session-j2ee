@@ -14,9 +14,11 @@
 
   <!-- tag::listeners[] -->
   <listener>
-    <listener-class>
-      org.springframework.web.context.ContextLoaderListener
-    </listener-class>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>com.myorg.redis.servlet.CustomSessionListener</listener-class>
   </listener>
 
   <servlet>
@@ -49,10 +51,6 @@
   <session-config>
     <session-timeout>10</session-timeout>
   </session-config>
-  
-  <!--<listener>
-    <listener-class>com.myorg.redis.servlet.CustomSessionListener</listener-class>
-  </listener>-->
 
 
 </web-app>

@@ -11,6 +11,8 @@ public class Initializer extends AbstractHttpSessionApplicationInitializer {
   @Override
   public void onStartup(ServletContext servletContext) {
     System.out.println("profile running = " + System.getProperty("spring.profiles.active"));
+    //custom.property
+    System.out.println("custom property  = " + System.getenv("spring.profiles.active"));
     if("sessionha".equalsIgnoreCase(System.getProperty("spring.profiles.active"))) {
       super.onStartup(servletContext);
     } else {
@@ -18,6 +20,4 @@ public class Initializer extends AbstractHttpSessionApplicationInitializer {
     }
 
   }
-
-
 }
