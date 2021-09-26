@@ -1,8 +1,11 @@
 package com.myorg.redis.servlet;
 
+import org.springframework.context.annotation.Configuration;
+
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+@Configuration
 public class CustomSessionListener implements HttpSessionListener {
 
   @Override

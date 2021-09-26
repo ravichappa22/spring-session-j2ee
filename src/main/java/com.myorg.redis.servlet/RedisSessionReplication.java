@@ -1,5 +1,8 @@
 package com.myorg.redis.servlet;
 
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.RequestContextListener;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +35,8 @@ public class RedisSessionReplication extends HttpServlet {
             && !request.getParameter("value").equals("null")) {
         System.out.println("set action");
         session.setAttribute(request.getParameter("key"), request.getParameter("value"));
+        //System.out.println("RequestContext" + );
+
       }
 
       if (request.getParameter("action").equals("Get Attribute") && request.getParameter("key") != null) {
@@ -66,7 +71,7 @@ public class RedisSessionReplication extends HttpServlet {
        request.getSession().invalidate();
        System.out.println("invalidated going to create new");
        session = request.getSession(true);
-      System.out.println("isnew in servlet = " + session.isNew());
+      System.out.println("isnew in servlet = " + session.isNew() + " sessionID= " + session.getId());
     }
 
     if (display) {
@@ -77,6 +82,7 @@ public class RedisSessionReplication extends HttpServlet {
         String name = (String) names.nextElement();
         sb.append("<tr><td>").append(name).append("</td><td>").append(session.getAttribute(name)).append("</td></tr>");
       }
+      sb.append("<tr><td>").append("sessionId").append("</td><td>").append(session).append("</td></tr>");
       sb.append("</table>");
       String res = sb.toString();
 
