@@ -1,17 +1,10 @@
 package com.myorg.redis.servlet;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.core.annotation.Order;
 import org.springframework.session.web.context.AbstractHttpSessionApplicationInitializer;
 
 import javax.servlet.ServletContext;
 
 public class SessionInitializer extends AbstractHttpSessionApplicationInitializer {
-
-  public SessionInitializer () {
-    super(RedisConfiguration.class);
-  }
 
   @Override
   public void onStartup(ServletContext servletContext) {
@@ -23,6 +16,5 @@ public class SessionInitializer extends AbstractHttpSessionApplicationInitialize
       System.out.println("backout plan, so no session HA");
     }
   }
-
 
 }

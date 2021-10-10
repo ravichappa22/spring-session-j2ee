@@ -8,6 +8,6 @@
 
 	<!--1-->
 	<context:annotation-config/>
-	<context:component-scan base-package="com"/>
+	<context:component-scan base-package="com.myorg.redis"/>
 	<!--<bean class="com.myorg.redis.servlet.CustomSessionListener"></bean>-->
 </beans>

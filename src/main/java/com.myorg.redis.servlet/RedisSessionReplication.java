@@ -60,9 +60,6 @@ public class RedisSessionReplication extends HttpServlet {
       if (request.getParameter("action").equals("logout")) {
         System.out.println("logout action");
         display = false;
-        String hazelId = session.getId();
-        // String jessionId = ((HazelcastHttpSession)session).getOriginalSessionId();
-        session.invalidate();
         request.getRequestDispatcher("/logout.jsp").forward(request, response);
         //response.getWriter().println("hz session invalidated" + hazelId);
         //response.getWriter().println("session invalidated" + jessionId);

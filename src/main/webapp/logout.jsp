@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" import="java.util.*" %>
 <% session=request.getSession(false);
-    String id = session.getId();
+  String id = session.getId();
+  session.invalidate();
 %>
 <html>
 
